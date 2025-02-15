@@ -32,16 +32,22 @@
     <!-- Navigation Tabs -->
     <ul class="nav nav-tabs mt-4">
         <li class="nav-item">
-            <a class="nav-link active" href="#" onclick="showSection(event, 'idea-validator')">Idea Validator</a>
+            <a class="nav-link" href="#" onclick="showSection(event, 'idea-validator')" data-section="idea-validator">
+                Idea Validator
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#" onclick="showSection(event, 'startup-planner')">Startup Planner</a>
+            <a class="nav-link" href="#" onclick="showSection(event, 'startup-planner')" data-section="startup-planner">
+                Startup Planner
+            </a>
         </li>
     </ul>    
 
     <!-- Idea Validator Section -->
     <div id="idea-validator" class="feature-section">
         <h1 style="text-align: center; color: #2c7be5;">Startup Idea Validator 💡</h1>
+        <p class="text-center text-muted">Enter your startup idea, and our AI will evaluate its feasibility and potential. Get instant insights on how viable your concept is!</p>
+        <form>
         <form>
         <textarea class="form-control" id="ideaInput" placeholder="Enter your startup idea..."></textarea>
         <button class="btn-primary" onclick="validateIdea(); return false;"><i class="fas fa-paper-plane"></i></button>
@@ -51,16 +57,31 @@
 
     </div>
 
-    <!-- Startup Planner Section (Placeholder) -->
+    <!-- Startup Planner Section-->
     <div id="startup-planner" class="feature-section" style="display: none;">
         <div class="chat-container">
             <h1 style="text-align: center; color: #2c7be5;">Startup Advisor AI 🚀</h1>
+            <p class="text-center text-muted">Describe your startup idea, and our AI will provide tailored guidance on planning, strategy, and execution to help bring your vision to life.</p>
         <form>
         <textarea class="form-control" id="ideaInput_advise" placeholder="Enter your startup idea..."></textarea>
         <button class="btn-primary" onclick="Advise(); return false;"><i class="fas fa-paper-plane"></i></button>
         </form>
         <div class="loader" id="loader_advise"></div>
         <div class="output" id="output_advise">Your result will appear here...</div>
+    </div>
+    
+    <!-- Pitch Deck Assistant (placeholder)-->
+    <div id="pitch-deck" class="feature-section" style="display: none;">
+        <h1>Pitch Deck Assistant 📊</h1>
+        <textarea class="form-control" placeholder="Enter pitch deck details..."></textarea>
+        <button class="btn-primary"><i class="fas fa-paper-plane"></i></button>
+    </div>
+
+    <!-- Growth Advisor (placeholder) -->
+    <div id="growth-advisor" class="feature-section" style="display: none;">
+        <h1>Growth Advisor 📈</h1>
+        <textarea class="form-control" placeholder="Enter growth strategy..."></textarea>
+        <button class="btn-primary"><i class="fas fa-paper-plane"></i></button>
     </div>
 
 </div>
