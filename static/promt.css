@@ -174,7 +174,7 @@ body {
     display: flex;
     gap:20px;
   }
-  
+
   input[type="email"] {
     flex-grow: 1;
     padding: 0.75rem;
@@ -234,12 +234,16 @@ body {
   
   /* Feature Section Card */
   .feature-section {
+    display: none;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 2rem;
     margin-bottom: 2rem;
   }
+  .feature-section.active {
+    display: block; /* Show the active section */
+}
   
   /* Form and Textarea Styles */
   textarea.form-control {
