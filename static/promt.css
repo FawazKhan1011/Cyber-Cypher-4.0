@@ -251,17 +251,24 @@ body {
   }
   
   .btn-primary {
-    max-width: fit-content;
-    max-height: fit-content;
-    background-color: #0070f3;
-    border-color: #0070f3;
-    color:white;
-    font-size: 1rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    height:fit-content;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: fit-content;
+    height: fit-content;
   }
+  .btn-primary i {
+    font-size: 18px;
+}
   
   .btn-primary:hover {
     background-color: #0051cc;
