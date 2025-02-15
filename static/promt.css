@@ -1,0 +1,298 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: rgb(250, 250, 250);
+}
+  
+  /* Header Styles */
+  header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .logo svg {
+    margin-right: 0.5rem;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+  }
+  
+  nav ul li {
+    margin-left: 1.5rem;
+
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  /* Main Content Styles */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .hero {
+    text-align: center;
+    padding: 4rem 0;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+  
+  /* CTA Buttons */
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .primary {
+    background-color: #0070f3;
+    color: #fff;
+  }
+  
+  .primary:hover {
+    background-color: #0051cc;
+  }
+  
+  .secondary {
+    background-color: #f5f5f5;
+    color: #333;
+  }
+  
+  .secondary:hover {
+    background-color: #e5e5e5;
+  }
+  
+  /* Features Section */
+  .features {
+    padding: 4rem 0;
+    background-color: #f9f9f9;
+  }
+  
+  .features h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .feature-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .feature-card svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    color: #0070f3;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-card p {
+    color: #666;
+  }
+  
+  /* CTA Section */
+  .cta {
+    text-align: center;
+    padding: 4rem 0;
+  }
+  
+  .cta p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    color: #666;
+  }
+  
+  form {
+    display: flex;
+    gap:20px;
+  }
+  
+  input[type="email"] {
+    flex-grow: 1;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  /* Footer Styles */
+  footer {
+    background-color: #f5f5f5;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  footer p {
+    margin-bottom: 1rem;
+    color: #666;
+  }
+  
+  footer nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  footer a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  /* Custom Styles for FoundrAI Single-Page Features */
+  
+  /* Navigation Tabs for Feature Sections */
+  .nav-tabs {
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 2rem;
+  }
+  
+  .nav-tabs .nav-link {
+    color: #333;
+    background-color: transparent;
+    border: none;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-tabs .nav-link:hover {
+    color: #0070f3;
+  }
+  
+  .nav-tabs .nav-link.active {
+    color: #0070f3;
+    border-bottom: 3px solid #0070f3;
+  }
+  
+  /* Feature Section Card */
+  .feature-section {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Form and Textarea Styles */
+  textarea.form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    font-size: 1rem;
+    resize: vertical;
+  }
+  
+  .btn-primary {
+    max-width: fit-content;
+    max-height: fit-content;
+    background-color: #0070f3;
+    border-color: #0070f3;
+    color:white;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    height:fit-content;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0051cc;
+    border-color: #0051cc;
+  }
+  
+  /* AI Idea Validator Result Box */
+  #ideaResult {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-left: 4px solid #0070f3;
+    background: #fafafa;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    nav ul {
+      display: none;
+    }
+  
+    .cta-buttons {
+      flex-direction: column;
+    }
+  
+    .button,
+    input[type="email"],
+    button[type="submit"] {
+      width: 100%;
+    }
+  }
+  
