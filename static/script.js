@@ -1,13 +1,19 @@
-// Function to toggle sections
-function showSection(sectionId) {
-    document.querySelectorAll(".feature-section").forEach((section) => {
-        section.style.display = "none";
+function showSection(event, sectionId) {
+    event.preventDefault(); // Prevent page reload issues
+
+    // Hide all sections
+    document.querySelectorAll('.feature-section').forEach(section => {
+        section.style.display = 'none';
     });
-    document.getElementById(sectionId).style.display = "block";
-    
-    const buttons = document.querySelectorAll(".nav-tabs .nav-link");
-    buttons.forEach(button => {
-        button.classList.remove("active");
+
+    // Show the selected section
+    document.getElementById(sectionId).style.display = 'block';
+
+    // Remove "active" class from all tabs
+    document.querySelectorAll('.nav-link').forEach(tab => {
+        tab.classList.remove('active');
     });
-    document.querySelector(`.nav-tabs .nav-link[data-target="${sectionId}"]`).classList.add("active");
+
+    // Add "active" class to the clicked tab
+    event.target.classList.add('active');
 }

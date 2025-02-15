@@ -32,19 +32,19 @@
     <!-- Navigation Tabs -->
     <ul class="nav nav-tabs mt-4">
         <li class="nav-item">
-            <a class="nav-link active" href="#" onclick="showSection('idea-validator')" data-target="idea-validator">Idea Validator</a>
+            <a class="nav-link active" href="#" onclick="showSection(event, 'idea-validator')">Idea Validator</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#" onclick="showSection('startup-planner')" data-target="startup-planner">Startup Planner</a>
+            <a class="nav-link" href="#" onclick="showSection(event, 'startup-planner')">Startup Planner</a>
         </li>
-    </ul>
+    </ul>    
 
     <!-- Idea Validator Section -->
     <div id="idea-validator" class="feature-section">
         <h1 style="text-align: center; color: #2c7be5;">Startup Idea Validator 💡</h1>
         <form>
         <textarea class="form-control" id="ideaInput" placeholder="Enter your startup idea..."></textarea>
-        <button class="btn-primary" onclick="validateIdea()"><i class="fas fa-paper-plane"></i></button>
+        <button class="btn-primary" onclick="validateIdea(); return false;"><i class="fas fa-paper-plane"></i></button>
         </form>
         <div class="loader" id="loader"></div>
         <div class="output" id="output">Your result will appear here...</div>
@@ -57,7 +57,7 @@
             <h1 style="text-align: center; color: #2c7be5;">Startup Advisor AI 🚀</h1>
         <form>
         <textarea class="form-control" id="ideaInput_advise" placeholder="Enter your startup idea..."></textarea>
-        <button class="btn-primary" onclick="Advise()"><i class="fas fa-paper-plane"></i></button>
+        <button class="btn-primary" onclick="Advise(); return false;"><i class="fas fa-paper-plane"></i></button>
         </form>
         <div class="loader" id="loader_advise"></div>
         <div class="output" id="output_advise">Your result will appear here...</div>

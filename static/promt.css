@@ -274,6 +274,9 @@ body {
     background-color: #0051cc;
     border-color: #0051cc;
   }
+  .output{
+    margin-top: 10px;
+  }
   
   /* AI Idea Validator Result Box */
   #ideaResult {
