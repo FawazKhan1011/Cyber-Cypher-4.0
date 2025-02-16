@@ -2,10 +2,12 @@ from flask import Flask, request, render_template, jsonify
 import requests, os
 from dotenv import load_dotenv
 
+# Load environment variables
 load_dotenv()
 
 app = Flask(__name__)
 
+# Hugging Face API setup
 API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.3"
 HEADERS = {"Authorization": f"Bearer {os.getenv('HUGGINGFACE_API_KEY')}"}
 
@@ -35,6 +37,37 @@ def learn_more():
     return render_template('learnmore.html')
 
 
+@app.route('/pitch-deck', methods=['POST'])
+def pitch_deck():
+    try:
+        data = request.json
+        user_input = data.get('input')
+
+        if not user_input:
+            return jsonify({'error': 'No input provided'}), 400
+
+        prompt = (
+            "You are an expert pitch deck advisor. Generate a detailed startup pitch deck, including sections for "
+            "Problem, Solution, Market Opportunity, Business Model, Traction, Team, and Financials. "
+            f"Startup Details: {user_input}\n\nPitch Deck:"
+        )
+
+        # Send request to Hugging Face API
+        response = requests.post(API_URL, headers=HEADERS, json={"inputs": prompt})
+
+        if response.status_code == 200:
+            result = response.json()
+            if isinstance(result, list) and len(result) > 0:
+                full_response = result[0].get("generated_text", "").strip()
+                ai_response = full_response.replace(prompt, "").strip()  # Remove echoed input
+                return jsonify({"response": ai_response})
+
+        return jsonify({"error": f"API Error: {response.status_code} - {response.text}"}), response.status_code
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route("/advisor", methods=["POST"])
 def advisor():
     try:
@@ -44,34 +77,30 @@ def advisor():
         if not user_input:
             return jsonify({'error': 'No input provided'}), 400
 
-        # Generate growth advice or respond to user question
+        # Construct a dynamic prompt
         if "growth strategies" in user_input.lower():
             prompt = (
-                "You are an expert startup growth advisor. Provide 5-6 unique, trending, and actionable strategies "
-                "for startups in the tech, AI, and SaaS industries. The strategies should be practical and current."
+                "You are a startup growth advisor. Provide 5-6 innovative, actionable growth strategies "
+                "for AI, SaaS, and tech startups."
             )
         else:
             prompt = (
-                "You are a professional startup advisor who provides clear, practical guidance "
-                "for launching, growing, and managing businesses, with a focus on tech, gaming, "
-                "and AI sectors. Provide responses directly without repeating the user's question. "
-                "Ensure your response is thorough, detailed, and step-by-step when applicable.\n\n"
-                f"Question: {user_input}\n\nAnswer:"
+                "You are a professional startup advisor specializing in tech, AI, and gaming sectors.\n\n"
+                f"User Query: {user_input}\n\nAnswer:"
             )
 
+        # Send request to Hugging Face API
         response = requests.post(API_URL, headers=HEADERS, json={"inputs": prompt})
 
+        # Handle the API response
         if response.status_code == 200:
             result = response.json()
             if isinstance(result, list) and len(result) > 0:
                 full_response = result[0].get("generated_text", "").strip()
+                ai_response = full_response.replace(prompt, "").strip()  # Remove echoed input
+                return jsonify({"response": ai_response})
 
-                # Ensure the AI response does not echo the input prompt
-                response_text = full_response.replace(prompt, "").strip()
-
-                return jsonify({"response": response_text})
-
-        return jsonify({"error": response.text}), response.status_code
+        return jsonify({"error": f"API Error: {response.status_code} - {response.text}"}), response.status_code
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -86,24 +115,26 @@ def validate():
         if not user_input:
             return jsonify({'error': 'No input provided'}), 400
 
+        # Construct a validation prompt
         formatted_input = (
             "You are an expert in startup evaluations. Analyze the following startup idea by "
             "assessing its market potential, strengths, weaknesses, and growth opportunities. "
-            "Provide only the analysis in paragraph form without repeating the input idea.\n\n"
+            "Provide the analysis in paragraph form without repeating the input.\n\n"
             f"Startup Idea: {user_input}\n\nAnalysis:"
         )
 
+        # Send request to Hugging Face API
         response = requests.post(API_URL, headers=HEADERS, json={"inputs": formatted_input})
 
+        # Handle the API response
         if response.status_code == 200:
             result = response.json()
             if isinstance(result, list) and len(result) > 0:
-                full_response = result[0].get('generated_text', '').strip()
-                ai_response = full_response.replace(formatted_input, "").strip()
-
+                full_response = result[0].get("generated_text", "").strip()
+                ai_response = full_response.replace(formatted_input, "").strip()  # Remove echoed input
                 return jsonify({"response": ai_response})
 
-        return jsonify({"error": response.text}), response.status_code
+        return jsonify({"error": f"API Error: {response.status_code} - {response.text}"}), response.status_code
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500

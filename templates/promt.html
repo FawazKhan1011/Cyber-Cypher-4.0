@@ -42,6 +42,11 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showSection(event, 'pitch-deck')" data-section="pitch-deck">
+                Pitch Deck Assistant
+            </a>
+        </li>        
+        <li class="nav-item">
             <a href="#" class="nav-link" data-section="growth-advisor" onclick="showSection(event, 'growth-advisor')">
                 Growth Advisor
             </a>
@@ -78,10 +83,18 @@
     
     <!-- Pitch Deck Assistant (placeholder)-->
     <div id="pitch-deck" class="feature-section" style="display: none;">
-        <h1>Pitch Deck Assistant 📊</h1>
-        <textarea class="form-control" placeholder="Enter pitch deck details..."></textarea>
-        <button class="btn-primary"><i class="fas fa-paper-plane"></i></button>
+        <h1 style="text-align: center; color: #2c7be5;">AI Pitch Deck Assistant 📊</h1>
+        <p class="text-center text-muted">Enter details about your startup to get a professional pitch deck.</p>
+        <form>
+            <textarea class="form-control" id="pitchDeckInput" placeholder="Describe your startup idea..."></textarea>
+            <button class="btn-primary mt-3" onclick="generatePitchDeck(); return false;">
+                <i class="fas fa-paper-plane"></i> Generate Pitch Deck
+            </button>
+        </form>
+        <div class="loader" id="loader_pitch"></div>
+        <div class="output" id="pitchDeckOutput">Your pitch deck content will appear here...</div>
     </div>
+    
 
     <!-- Growth Advisor Section -->
     <div id="growth-advisor" class="feature-section" style="display: none;">
@@ -98,6 +111,39 @@
 
 </div>
 <script>
+    async function generatePitchDeck() {
+    const input = document.getElementById('pitchDeckInput').value;
+    const loader = document.getElementById('loader_pitch');
+    const output = document.getElementById('pitchDeckOutput');
+
+    if (!input.trim()) {
+        alert('Please enter startup details for the pitch deck!');
+        return;
+    }
+
+    loader.style.display = 'block';
+    output.innerText = 'Generating pitch deck...';
+
+    try {
+        const response = await fetch('/pitch-deck', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ input })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            output.innerHTML = `<pre>${result.response}</pre>`;
+        } else {
+            output.innerText = `Error: ${result.error}`;
+        }
+    } catch (error) {
+        output.innerText = `Failed to connect: ${error.message}`;
+    } finally {
+        loader.style.display = 'none';
+    }
+}
     async function validateIdea() {
         const input = document.getElementById('ideaInput').value;
         const loader = document.getElementById('loader');
