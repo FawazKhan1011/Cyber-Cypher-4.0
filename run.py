@@ -19,13 +19,16 @@ def home():
 def promt():
     return render_template("promt.html")
 
+
 @app.route('/about')
 def about():
     return render_template('about.html')
 
+
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
 
 @app.route('/learnmore')
 def learn_more():
@@ -62,7 +65,10 @@ def advisor():
             result = response.json()
             if isinstance(result, list) and len(result) > 0:
                 full_response = result[0].get("generated_text", "").strip()
-                response_text = full_response.split("Answer:", 1)[-1].strip() if "Answer:" in full_response else full_response
+
+                # Ensure the AI response does not echo the input prompt
+                response_text = full_response.replace(prompt, "").strip()
+
                 return jsonify({"response": response_text})
 
         return jsonify({"error": response.text}), response.status_code
@@ -93,7 +99,8 @@ def validate():
             result = response.json()
             if isinstance(result, list) and len(result) > 0:
                 full_response = result[0].get('generated_text', '').strip()
-                ai_response = full_response.split("Analysis:", 1)[-1].strip() if "Analysis:" in full_response else full_response
+                ai_response = full_response.replace(formatted_input, "").strip()
+
                 return jsonify({"response": ai_response})
 
         return jsonify({"error": response.text}), response.status_code

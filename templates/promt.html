@@ -87,11 +87,13 @@
     <div id="growth-advisor" class="feature-section" style="display: none;">
         <h1 style="text-align: center; color: #2c7be5;">AI Growth Advisor 📈</h1>
         <p class="text-center text-muted">Click the button below to get recent, unique startup growth strategies.</p>
-        <form>
-            <button class="btn-primary" onclick="getGrowthAdvice(); return false;">Get Growth Advice</button>
-        </form>
-        <div class="loader" id="loader_growth"></div>
-        <div class="output" id="growthAdviceOutput">Your result will appear here...</div>
+        <center>
+            <form>
+                <button class="btn-primary" id="growth-btn" onclick="getGrowthAdvice(); return false;">Get Growth Advice</button>
+            </form>
+            <div class="loader" id="loader_growth"></div>
+            <div class="output" id="growthAdviceOutput">Your result will appear here...</div>
+        </center>
     </div>
 
 </div>
