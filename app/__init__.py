@@ -1,11 +1,11 @@
 from flask import Flask
 from flask_pymongo import PyMongo
-
+from app.config import Config
 mongo = PyMongo()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object('app.config.Config')
+    app.config['MONGO_URI'] = Config.MONGO_URI  # Corrected line
 
     mongo.init_app(app)
 
